@@ -28,9 +28,18 @@ body {
 
 .input-container {
     flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
     background-color: #FFFFFF;
     border: #b8b8b8 1px solid;
     border-radius: 10px;
+    padding: 10px;
+
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
 }
 
 .button-container {

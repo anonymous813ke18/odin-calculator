@@ -28,8 +28,13 @@ export function addButton () {
     const subtractBtn = document.createElement("button");
     const multiplyBtn = document.createElement("button");
     const divideBtn = document.createElement("button");
+    const dotBtn = document.createElement("button");
+    const backBtn = document.createElement("button");
+    const modBtn = document.createElement("button");
     const newRow = document.createElement("div")
     newRow.classList.add("row");
+    const additionalRow = document.createElement("div");
+    additionalRow.classList.add("row");
 
     clearBtn.setAttribute("id", "btn-clear");
     zeroBtn.setAttribute("id", "btn-0");
@@ -39,6 +44,10 @@ export function addButton () {
     multiplyBtn.setAttribute("id", "btn-multiply");
     divideBtn.setAttribute("id", "btn-divide");
     newRow.setAttribute("id",`row-4`);
+    additionalRow.setAttribute("id", "row-5");
+    dotBtn.setAttribute("id", "btn-dot");
+    backBtn.setAttribute("id", "btn-back");
+    modBtn.setAttribute("id", "btn-mod");
 
     clearBtn.textContent = "C";
     zeroBtn.textContent = "0";
@@ -47,13 +56,20 @@ export function addButton () {
     subtractBtn.textContent = "-";
     multiplyBtn.textContent = "x";
     divideBtn.textContent = "/"
+    dotBtn.textContent = ".";
+    backBtn.textContent = "⌫";
+    modBtn.textContent = "%";
 
     newRow.appendChild(clearBtn);
     newRow.appendChild(zeroBtn);
     newRow.appendChild(equalBtn);
+    additionalRow.appendChild(dotBtn);
+    additionalRow.appendChild(backBtn);
     numContainer.appendChild(newRow);
+    numContainer.appendChild(additionalRow);
     operationContainer.appendChild(addBtn);
     operationContainer.appendChild(subtractBtn);
     operationContainer.appendChild(multiplyBtn);
     operationContainer.appendChild(divideBtn);
+    operationContainer.appendChild(modBtn);
 }
