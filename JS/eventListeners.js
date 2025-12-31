@@ -215,5 +215,68 @@ export function setUpEventListeners () {
                 } else if(num1) operand = "%";
                 break
         }        
+    });
+
+    document.addEventListener("keydown", (e) => {
+        const numbers = "1234567890";
+        const operations = "+-*/%";
+
+        let keyPressed = `${e.key}`;
+
+        if (numbers.includes(keyPressed)) {
+            if (operand == "") {
+                num1 += `${keyPressed}`;
+                inputContainer.textContent = num1;
+            }
+            else {
+                num2 += `${keyPressed}`;
+                inputContainer.textContent = num2;
+            } 
+        } else if (operations.includes(keyPressed)) {
+            if (operand && num2) {
+                num1 = operate(Number.parseFloat(num1), Number.parseFloat(num2), operand);
+                inputContainer.textContent = num1;
+                num2 = "";
+                operand = `${keyPressed}`;
+            } else if(num1) operand = `${keyPressed}`;
+        } else if (keyPressed == "=" || keyPressed == "Enter") {
+            if (num1 && num2 && operand) {
+                let output = operate(Number.parseFloat(num1), Number.parseFloat(num2), operand);
+                if (output == undefined) {
+                    inputContainer.textContent = "STOP RIGHT THERE!!!";
+                    num1 = "";
+                    num2 = "";
+                    operand = "";
+                } else {
+                    inputContainer.textContent = output;
+                    num1 = output;
+                    num2 = "";
+                    operand = "";
+                }
+            }
+        } else if (keyPressed == "Backspace") {
+            if (operand == "" && num1 !== "") {
+                num1 = num1.slice(0, -1);
+                inputContainer.textContent = num1;
+            }
+            else if (operand !== "" && num2 !== "") {
+                num2 = num2.slice(0, -1);
+                inputContainer.textContent = num2;
+            } 
+        } else if (keyPressed == "Delete") {
+            num1 = "";
+            num2 = "";
+            operand = "";
+            inputContainer.textContent = "";   
+        } else if (keyPressed == ".") {
+            if (operand == "") {
+                if (!num1.includes(".")) num1 += ".";
+                inputContainer.textContent = num1;
+            }
+            else {
+                if (!num2.includes(".")) num2 += ".";
+                inputContainer.textContent = num2;
+            } 
+        }
     })
 }
